@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const mongooseDelete = require("mongoose-delete");
 // para definir el esquema
 const TracksScheme =  new mongoose.Schema(
     {
@@ -25,7 +25,7 @@ const TracksScheme =  new mongoose.Schema(
             nickname: {
                 type: String
             },
-            nacionality: {
+            nationality: {
                 type: String
             }
         },
@@ -46,5 +46,8 @@ const TracksScheme =  new mongoose.Schema(
         versionKey: false
     }
 );
+// el override es para que sobbrescriba los metodos que vienen nativos del mongoose con la opcion del mongoose-delete
+TracksScheme.plugin(mongooseDelete, {overrideMethods: "all"})
+
 // El primer dato es el nombre de la coleccion(tabla)
 module.exports = mongoose.model("tracks", TracksScheme)

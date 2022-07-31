@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const mongooseDelete = require("mongoose-delete");
 
 // para definir el esquema
 const UsersSchema =  new mongoose.Schema(
@@ -14,7 +15,8 @@ const UsersSchema =  new mongoose.Schema(
             unique:true //para que no se repitan los correos
         },
         password:{
-            type:String
+            type:String,
+            select:false // con esto evitamos que en las consultas se muestre este campo
         },
         role:{
             type:["user", "admin"],
@@ -26,5 +28,9 @@ const UsersSchema =  new mongoose.Schema(
         versionKey: false
     }
 );
+
+// el override es para que sobbrescriba los metodos que vienen nativos del mongoose con la opcion del mongoose-delete
+UsersSchema.plugin(mongooseDelete, {overrideMethods: "all"})
+
 // El primer dato es el nombre de la coleccion(tabla)
 module.exports = mongoose.model("users", UsersSchema)
