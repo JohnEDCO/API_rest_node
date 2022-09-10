@@ -26,7 +26,7 @@ const validatorRegisterItem = [
 ];
 
 const validatorLogin = [
-    check("password")
+    check("email")
         .exists()
         .notEmpty()
         .isEmail(),

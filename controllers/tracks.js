@@ -8,8 +8,9 @@ const { handleHttpError } = require('../utils/handleError');
  */
 const getItems = async (req, res) => {
     try {
+        const {user} = req
         const data = await tracksModel.find({})
-        res.send({ data });
+        res.send({ data, user});
     } catch (err) {
         handleHttpError(res, 'ERROR_GET_ITEMS');
     }
