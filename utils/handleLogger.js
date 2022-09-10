@@ -9,3 +9,5 @@ const loggerStream = {
         })
     },
 };
+
+module.exports = loggerStream;

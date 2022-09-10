@@ -2,6 +2,7 @@ require("dotenv").config() //para que funcione bien nuestro .env en todo el ento
 const express = require("express");
 const cors = require("cors");
 const morganBody = require('morgan-body');
+const loggerStream = require('./utils/handleLogger');
 const dbConnect = require('./config/mongo');
 const app = express()
 
